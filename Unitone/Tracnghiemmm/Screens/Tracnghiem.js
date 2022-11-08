@@ -18,6 +18,7 @@ const Tracnghiem = ({navigation}) => {
     const [showNextButton, setShowNextButton] = useState(false)
     const [showNextButtonErrow, setShowNextButtonErrow] = useState(false)
     const [showScoreModal, setShowScoreModal] = useState(false)
+    //Axios
     //Handle
     const validateAnswer = (selectedOption) => {
         let correct_option = allQuestions[currentQuestionIndex]['correct_option'];
@@ -216,7 +217,6 @@ const Tracnghiem = ({navigation}) => {
             return null
         }
     }
-
     const [progress, setProgress] = useState(new Animated.Value(0));
     const progressAnim = progress.interpolate({
         inputRange: [0, allQuestions.length],
@@ -284,7 +284,7 @@ const Tracnghiem = ({navigation}) => {
                visible={showScoreModal}
                >
                     <View
-                                     style={{height:'100%',width:'100%', backgroundColor:'rgba(00,00,00,.5)'}}>
+                        style={{height:'100%',width:'100%', backgroundColor:'rgba(00,00,00,.7)'}}>
                     
                    <View style={{
                        flex: 1,
@@ -329,7 +329,7 @@ const Tracnghiem = ({navigation}) => {
                        </View>
 
                        <TouchableOpacity
-                           onPress={()=> {navigation.navigate('Unit1'),dispatch(updateListone(ListOne))}}
+                           onPress={()=> {navigation.navigate("A1"),dispatch(updateListone(ListOne))}}
                            style={{
                                 marginTop:'10%',
                                backgroundColor: COLORS.accent,
