@@ -1,9 +1,9 @@
 export default data =[
     {
-        question:'It is parents duty and responsibility to _____ hands to take care of their children and give them a happy home.',
-        options: ['A. Shake','B. Hold','C. Join','D. Take'],
-        correct_option:'C. Join',
-        note:' To join hands = work together : Cùng nhau, chung sức, cùng làm việc '
+        question:'What is mean ? : Go ',
+        options: ['A. Vao','B. Di','C. Ra','D. Ok'],
+        correct_option:'B. Di',
+        note:'Ga'
 
     },
     {
@@ -36,5 +36,4 @@ export default data =[
         correct_option:'2',
         note:'sai roi'
     },
-
 ]

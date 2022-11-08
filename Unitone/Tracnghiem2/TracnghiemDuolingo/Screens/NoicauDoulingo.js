@@ -343,7 +343,7 @@ const Tracnghiemdoulingo = ({navigation}) => {
                        </View>
 
                        <TouchableOpacity
-                           onPress={() => navigation.navigate('Game')}
+                           onPress={() => navigation.navigate('A1')}
                            style={{
                                 marginTop:'10%',
                                backgroundColor: COLORS.accent,

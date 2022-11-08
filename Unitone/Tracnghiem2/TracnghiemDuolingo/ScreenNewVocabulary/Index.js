@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
 
-export default class TuvungUnit1 extends React.Component{
+export default class ProGramUnit1 extends React.Component{
     render(){
         return(
     <View style={{flex:1}}>

@@ -1,48 +1,31 @@
-import React  from 'react'
+import React from 'react';
 import {
-    Text,
     View,
+    Text,
     Image,
-    TouchableOpacity,
-    ImageBackground} from 'react-native'
-import CourseList1 from '../screensTwo/CourseList';
-import Icon from 'react-native-vector-icons/FontAwesome';
+    TouchableOpacity} from 'react-native';
+import CourseList from './CourseList';
 import {  useSelector} from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
-const Cources2 =( ) =>{
-    const infor = useSelector((state) =>state.inforUnitOne);
-    const navigation = useNavigation();
+import axios from 'axios';
+import { GetInforUser } from '../../API/Get'; 
+
+const Cources2 =() =>{
+    //Axios
+        const navigation = useNavigation();
+        const infor = useSelector((state) =>state.inforUnitOne);
         return(
-            
-            <ImageBackground
-                source={require('../images/19366.jpg')}
-                style={{width:"100%",height:"100%", backgroundColor:'white'}}
-            >
-                <View style={{flex:1, padding:20}}>
-                    <View style={{marginTop:20, flexDirection:'row', justifyContent:'space-between'}}>
-                        <TouchableOpacity style={{padding:5, backgroundColor:'#E6E7E9', width:45, borderRadius:10}} onPress={() => navigation.goBack()}>
-                            <Icon name='backward' size={30}></Icon>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={{}} onPress={() => navigation.navigate('Root')}>
-                            <Icon name="home" size={40}></Icon>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={{marginTop:'10%', justifyContent:'center', alignItems:'center'}}>
-                        <Text style={{fontSize:30, fontWeight:'600'}}>
-                            Lesson Unit Component
-                        </Text>
-                    </View>
-                </View>
+            <View
+                style={{width:"100%",height:"100%",backgroundColor:'white'}}>
                 <View style={{
-                    flex: 1,
                     flexDirection:"row",
                     width:"100%",
                     paddingHorizontal:20,
                     borderRadius:30,
                 }}>
                     <TouchableOpacity
-                        onPress={()=> navigation.navigate("Modal")}
-                        style={{
+                        onPress={()=> navigation.navigate("Account")}
+                        style={{ width:30
                         }}
                     >
                         <Image
@@ -58,26 +41,37 @@ const Cources2 =( ) =>{
                         marginLeft:"70%"
                     }}> 
                             <Image
-                                
                                 source={require('../images/balloon.png')}
                                 style={{height:40,width:40}}
                             />
                     </View>
-                </View>                    
-                    <View style={{}}>
-                        
-                            <CourseList1
+                </View>
+                <View style={{backgroundColor:'#F0F8FF',borderTopStartRadius:200,borderTopEndRadius:200, marginTop:15}}>
+                <Text style={{
+                    color:"black",
+                    fontSize:40,
+                    width:200,
+                    alignSelf:"center",
+                    textAlign:"center",
+                    paddingVertical:10,
+                    }}>
+                    Unit Cources {Number}
+                </Text>
+                </View>
+          
+                    <View style={{flex:1,paddingVertical:15, backgroundColor:'#F0F8FF'}}>
+                            <CourseList
                                 onPress={()=> navigation.navigate("TuvungUnit1")}
                                 img={require('../images/ae.png')}
                                 title="Vocabulary" 
                                 bg="#fdddf3"
                                 lessons="20 lessons"
-                                percent={infor.ListOne}
+                                percent={ListA}
                             />
-                            
-                            {
+                             {
                                 infor.ListOne != '100%' ? (
-                                    <CourseList1
+                                    <CourseList
+                                        onPress={()=> navigation.navigate("VocabularyTN2")}
                                         img={require('../images/ae.png')}
                                         title="UI Motion Design in After Effects"
                                         bg='rgba(00,00,00,.4)'
@@ -85,7 +79,8 @@ const Cources2 =( ) =>{
                                         percent={infor.ListTwo}
                                 />
                                 ): infor.ListOne == '100%' ? (
-                                    <CourseList1
+                                    <CourseList
+                                        onPress={()=> navigation.navigate("VocabularyTN2")}
                                         img={require('../images/ae.png')}
                                         title="Sketch shortcuts and tricks"
                                         bg="#fef8e3"
@@ -94,53 +89,52 @@ const Cources2 =( ) =>{
                                     />        
                                 ) : null
                             }
-                             {
-                                infor.ListTwo != '100%' ? (
-                                    <CourseList1
-                                        img={require('../images/ae.png')}
-                                        title="UI Motion Design in After Effects"
-                                        bg="rgba(00,00,00,.4)"
-                                        lessons="20 lessons"
-                                        percent={infor.ListThree}
-                                />
-                                ): infor.ListTwo == '100%' ? (
-                                    <CourseList1
-                                        img={require('../images/ae.png')}
-                                        title="UI Motion Design in After Effects"
-                                        bg="#fcf2ff"
-                                        lessons="20 lessons"
-                                        percent={infor.ListThree}
-                                    />        
-                                ) : null
-                            }
-
                             {
-                                infor.ListTwo != '100%' ? (
-                                    <CourseList1
+                                infor.ListOne != '100%' ? (
+                                    <CourseList
+                                    onPress={()=> navigation.navigate("A2")}
                                         img={require('../images/ae.png')}
                                         title="UI Motion Design in After Effects"
-                                        bg="rgba(00,00,00,.4)"
+                                        bg='rgba(00,00,00,.4)'
                                         lessons="20 lessons"
-                                        percent={infor.ListThree}
+                                        percent={infor.ListTwo}
                                 />
-                                ): infor.ListTwo == '100%' ? (
-                                    <CourseList1
+                                ): infor.ListOne == '100%' ? (
+                                    <CourseList
+                                    onPress={()=> navigation.navigate("A2")}
                                         img={require('../images/ae.png')}
-                                        title="UI Motion Design in After Effects"
-                                        bg="#fcf2ff"
+                                        title="Sketch shortcuts and tricks"
+                                        bg="#fef8e3"
                                         lessons="20 lessons"
-                                        percent={infor.ListThree}
+                                        percent={infor.ListTwo}
                                     />        
                                 ) : null
                             }
+                            {
+                                infor.ListOne != '100%' ? (
+                                    <CourseList
+                                        onPress={()=> navigation.navigate("Game")}
+                                        img={require('../images/ae.png')}
+                                        title="UI Motion Design in After Effects"
+                                        bg='rgba(00,00,00,.4)'
+                                        lessons="20 lessons"
+                                        percent={infor.ListTwo}
+                                />
+                                ): infor.ListOne == '100%' ? (
+                                    <CourseList
+                                        onPress={()=> navigation.navigate("Game")}
+                                        img={require('../images/ae.png')}
+                                        title="Sketch shortcuts and tricks"
+                                        bg="#fef8e3"
+                                        lessons="20 lessons"
+                                        percent={infor.ListTwo}
+                                    />        
+                                ) : null
+                            }
+                            
                     </View>
-                    <View  style={{marginLeft:"70%",width:40,height:40, marginTop:'20%', opacity:0.4}}>
-                    <Image
-                            source={require('../images/atom.png')}
-                            style={{marginLeft:20,width:40,height:40, marginTop:10, }}
-                        />
-                    </View>
-            </ImageBackground>
+                    
+            </View>
         )
     }
 export default Cources2

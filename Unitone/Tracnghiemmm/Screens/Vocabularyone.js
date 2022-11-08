@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { View, Text,  TouchableOpacity, Modal, Animated} from 'react-native'
 import { COLORS} from '../Constants/theme'
-import data from '../Data/QuestionData';
+import data from '../Data/DataQues';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useDispatch} from 'react-redux';
 import { updateListone } from '../../../Redux/ReduxInforUnit/UnitOne/UpdateAction';
-const TracnghiemPassOne = ({navigation}) => {
+const TracnghiemABC = ({navigation}) => {
     let ListOne = '100%';
     const dispatch = useDispatch();
     const allQuestions = data;
@@ -216,7 +216,6 @@ const TracnghiemPassOne = ({navigation}) => {
             return null
         }
     }
-
     const [progress, setProgress] = useState(new Animated.Value(0));
     const progressAnim = progress.interpolate({
         inputRange: [0, allQuestions.length],
@@ -284,7 +283,7 @@ const TracnghiemPassOne = ({navigation}) => {
                visible={showScoreModal}
                >
                     <View
-                                     style={{height:'100%',width:'100%', backgroundColor:'rgba(00,00,00,.5)'}}>
+                        style={{height:'100%',width:'100%', backgroundColor:'rgba(00,00,00,.7)'}}>
                     
                    <View style={{
                        flex: 1,
@@ -329,7 +328,7 @@ const TracnghiemPassOne = ({navigation}) => {
                        </View>
 
                        <TouchableOpacity
-                           onPress={()=> {navigation.navigate('Vocabularynext'),dispatch(updateListone(ListOne))}}
+                           onPress={()=> {navigation.navigate("A1"),dispatch(updateListone(ListOne))}}
                            style={{
                                 marginTop:'10%',
                                backgroundColor: COLORS.accent,
@@ -346,4 +345,4 @@ const TracnghiemPassOne = ({navigation}) => {
            </View>     
 ) 
 }
-export default TracnghiemPassOne
+export default TracnghiemABC

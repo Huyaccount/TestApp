@@ -14,26 +14,25 @@ import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../typ
 import LinkingConfiguration from './LinkingConfiguration';
 import {Provider} from 'react-redux';
 import {store} from '../Redux/Reduxer/Store'
-
 {/*ListUnit*/}
 import Cources from '../Newfolder/screens/Cources';
 {/*Unit1*/}
-import Cources2 from '../Newfolder/screensTwo/Cources2';
+import Cources2 from '../Newfolder/screens/Cources2';
 {/*Vocabulary*/}
 import TuvungUnit1 from '../Unitone/Tracnghiemmm/ScreenNewVocabulary/Index';
-import TracnghiemPassOne from '../Unitone/Tracnghiemmm/PassOne/Screens/Tracnghiem';
 import Tracnghiem from '../Unitone/Tracnghiemmm/Screens/Tracnghiem';
-//
-
 {/*Duolingo*/}
 import Tracnghiemdoulingo from '../Unitone/Tracnghiem2/TracnghiemDuolingo/Screens/NoicauDoulingo';
 {/*WriteDuolingoUnit1*/}
+import ProGramUnit1 from '../Unitone/Tracnghiem2/TracnghiemDuolingo/ScreenNewVocabulary/Index';
 import WriteDuolingoUnit1 from '../Unitone/Writeduo/Tracnghiemmm/Screens/Writeduolingounti1';
 {/*Test*/}
+import Testindex from '../Test';
 import GameUnit1Memory from '../Unitone/GameUnit1/Screens/Index'
 import LoginScreen from '../components/Screens/LoginScreen';
 import AccountScreens from '../components/Screens/AccountScreens';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import TracnghiemAAAAAA from '../Unitone/Tracnghiem2/TracnghiemDuolingo/Screens/Tracnghiem';
 //import Login1 from '../Test/test';
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -44,24 +43,26 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
     </NavigationContainer>
   );
 }
-const Stack = createNativeStackNavigator<RootStackParamList>();
-    {/*initialRouteName={'Login'}*/}
-
-const abc = async () =>
+const GetUser = async() =>
 {
   return(
-     await AsyncStorage.getItem('UserName') 
-  )   
+      await AsyncStorage.getItem('UserName')
+  )
 }
+const Stack = createNativeStackNavigator<RootStackParamList>();
+    {/*initialRouteName={'Login'}*/}
 function RootNavigator() {
   return (
     <Provider store={store}>
-    <Stack.Navigator initialRouteName={abc != null ? "Login" : "Root"}  screenOptions={{headerShown: false} } >
+    <Stack.Navigator initialRouteName={GetUser() != null ? "Root" : "Login"} screenOptions={{headerShown: false} } >
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
-      <Stack.Screen name="Unit1" component={Cources2} />
+      <Stack.Screen name="A1" component={Cources2} />
+      <Stack.Screen name="A2" component={WriteDuolingoUnit1} />
+      <Stack.Screen name="Programunit1" component={ProGramUnit1} />
       <Stack.Screen name="VocabularyTN" component={Tracnghiem} />
+      <Stack.Screen name="VocabularyTN2" component={TracnghiemAAAAAA} />
       <Stack.Screen name="Vocabularynext2" component={Tracnghiemdoulingo} />
       <Stack.Screen name="Game" component={GameUnit1Memory} />
       <Stack.Screen name="Account" component={AccountScreens} />
@@ -130,7 +131,7 @@ function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="TabThree"
-        component={AccountScreens}
+        component={Testindex}
         options={{
           title: 'Tab',
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,

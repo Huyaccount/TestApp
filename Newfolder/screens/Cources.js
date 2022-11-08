@@ -1,136 +1,20 @@
-import React, { useState ,useEffect} from 'react';
+import React from 'react';
 import {
     View,
     Text,
     Image,
     TouchableOpacity,
-    ScrollView,
-    Modal} from 'react-native';
+    ScrollView} from 'react-native';
 import CourseList from './CourseList';
 import {  useSelector} from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
-import * as SQLite from "expo-sqlite";
-const openDatabase =()=> {
-    if (Platform.OS === "web") {
-      return {
-        transaction: () => {
-          return {
-            executeSql: () => {},
-          };
-        },
-      };
-    }
-    const db = SQLite.openDatabase("abcd2.db");
-    return db;
-  }
-  
-  const db = openDatabase();
 const Cources =() =>{
-
-    //
-    const [nm, setB] = useState();
-    const [name, setName] = useState('');
-    const [age, setAge] = useState('');
-    const [Number, setN] = useState('');
-    const [age1, setAge1] = useState('');
-    useEffect(() => {
-        createTable();
-        getData();
-    }, []);
-    const createTable = () => {
-        db.transaction((tx) => {
-            tx.executeSql(
-                "CREATE TABLE IF NOT EXISTS "
-                + "Account "
-                + "(ID INTEGER PRIMARY KEY AUTOINCREMENT, User TEXT, Pass TEXT);"
-            )
-        })
-    }
-    const getData = () => {
-        try {
-            db.transaction((tx) => {
-                tx.executeSql(
-                    "SELECT User, Pass FROM Account",
-                    [],
-                    (tx, results) => {
-                        var len = results.rows.length;
-                        if (len > 0) {
-                          var userName1 = results.rows.item(0).User;
-                          var userAge1 = results.rows.item(0).Pass;
-                          setN(userName1);
-                          setAge1(userAge1);
-                        }
-                    }
-                )
-            })
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    const setData =() => {
-                 db.transaction(async (tx) => {
-                    
-                     tx.executeSql(
-                        "INSERT INTO Account (User, Pass) VALUES (?,?)",
-                        [nm, age]
-                    );
-                })
-          
-            
-        }
-        //
-
-    const [showModal , SetShowModal] = useState(true);
-    const showModala =() =>
-    {
-        setB(1);
-        setN(1);
-        SetShowModal(false)
-    }
-    const Modale = () =>{
-        if (Number == 1)
-        {
-            SetShowModal(false);
-        }
-        if(showModal)
-        {
-            return(
-                <Modal style={{flex:1}}>
-                    <View style={{justifyContent:'center', alignItems:'center'}}>
-                    <View style={{height:'50%',width:'80%', backgroundColor:'pink', borderRadius:20, justifyContent:'center', alignItems:'center'}}>
-                        <Text style ={{fontSize:20}}>
-                                ban co muon luu tai khoan khong
-                        </Text>
-                        <View style={{flexDirection:'row', }}>
-                            <TouchableOpacity 
-                            onPress={showModala}
-                            style={{height:50,width:50,borderRadius:10,backgroundColor:'red' , margin:20, justifyContent:'center', alignItems:'center'}}>
-                                <Text>
-                                    No
-                                </Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity 
-                            onPress={()=> {showModala() && setData()}}
-                            style={{height:50,width:50,borderRadius:10,backgroundColor:'green', margin:20, justifyContent:'center', alignItems:'center'}}>
-                                <Text>
-                                    Yes
-                                </Text>
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                    </View>
-                </Modal>
-            )
-        }else return null;
-    }
         const navigation = useNavigation();
         const infor = useSelector((state) =>state.inforUnitOne);
         return(
             <View
                 style={{width:"100%",height:"100%",backgroundColor:'white'}}
             >
-                <Modale></Modale>
                 <View style={{
                     flexDirection:"row",
                     width:"100%",
@@ -138,7 +22,7 @@ const Cources =() =>{
                     borderRadius:30,
                 }}>
                     <TouchableOpacity
-                        onPress={()=> navigation.navigate("Unit1")}
+                        onPress={()=> navigation.navigate("Account")}
                         style={{ width:30
                         }}
                     >
@@ -176,7 +60,7 @@ const Cources =() =>{
                     <ScrollView >          
                     <View style={{paddingVertical:15, backgroundColor:'#F0F8FF'}}>
                             <CourseList
-                                onPress={()=> navigation.navigate("TuvungUnit1")}
+                                onPress={()=> navigation.navigate("A1")}
                                 img={require('../images/ae.png')}
                                 title="Vocabulary" 
                                 bg="#fdddf3"

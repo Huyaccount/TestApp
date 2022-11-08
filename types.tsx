@@ -17,8 +17,11 @@ export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
   Modal: undefined;
   NotFound: undefined;
-  Unit1: undefined;
+  A1: undefined;
+  A2: undefined;
+  Programunit1 : undefined;
   VocabularyTN: undefined;
+  VocabularyTN2: undefined;
   TuvungUnit1: undefined;
   VocabularynextPassone: undefined;
   Vocabularynext2: undefined;
